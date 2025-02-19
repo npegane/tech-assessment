@@ -50,9 +50,17 @@ class EligibilityService {
     return true;
   }
 
+  /**
+   * Compare values between criteria and cart with operators. Using recursivity for 'and' and 'or' operators
+   * If all criteria are fulfilled then the cart is eligible (return true).
+   *
+   * @param cartValue
+   * @param criteriaValue
+   * @return {boolean}
+   */
+
   compareValues(cartValue, criteriaValue) {
-    //Function to compare values. Using recursivity for 'and' and 'or' operators
-    
+
     //Stop cases
     if (criteriaValue === null || criteriaValue === undefined) {
       return false;
@@ -62,6 +70,7 @@ class EligibilityService {
       return cartValue == criteriaValue;
     }
 
+    //Handling operators
     const [operator, value] = Object.entries(criteriaValue)[0];
     switch (operator) {
       case 'gt':
